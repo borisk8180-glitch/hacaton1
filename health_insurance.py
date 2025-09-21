@@ -96,15 +96,18 @@ plt.show()
 # ===============================
 # 5. Regional Analysis
 # ===============================
-region_summary = df.groupby("region")["charges"].agg(["mean", "median", "count"])
-# We get brief statistics on medical expenses grouped by region.
-print("\nRegional summary:")
-print(region_summary)
+# Encode categorical features
+df_pp = df.copy()
+df_pp["sex"] = df_pp["sex"].map({"male":1, "female":0})
+df_pp["smoker"] = df_pp["smoker"].map({"yes":1, "no":0})
+df_pp = pd.get_dummies(df_pp, columns=["region"], drop_first=False)
 
-# Bar plot of mean charges per region
-plt.figure(figsize=(7,4))
-plt.bar(region_summary.index, region_summary["mean"], color="skyblue", edgecolor="black")
-plt.title("Average Charges by Region")
-plt.xlabel("Region")
-plt.ylabel("Mean Charges")
-plt.show()
+# Standardize numeric columns
+scaler = StandardScaler()
+df_pp[["age", "bmi", "charges"]] = scaler.fit_transform(df_pp[["age", "bmi", "charges"]])
+# So that all numerical signs are on the same scale.
+# Many models (for example, linear regression, SVM, KNN, neural networks) are sensitive to the scale of features.
+# This way the algorithm learns faster and more stable.
+
+print("\nHead of processed dataframe:")
+print(df_pp.head())
