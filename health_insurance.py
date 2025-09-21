@@ -69,3 +69,26 @@ plt.xlabel("BMI")
 plt.ylabel("Charges")
 plt.title("BMI vs Charges (red=smoker, blue=non-smoker)")
 plt.show()
+
+# ===============================
+# 4. Correlation Matrix
+# ===============================
+# Convert categorical variables to numeric for correlation analysis
+df_corr = df.copy()
+df_corr["sex"] = df_corr["sex"].map({"male":1, "female":0})
+df_corr["smoker"] = df_corr["smoker"].map({"yes":1, "no":0})
+df_corr = pd.get_dummies(df_corr, columns=["region"], drop_first=False)
+
+corr_matrix = df_corr.corr()
+print("\n--- Correlation Matrix (selected columns) ---")
+print(corr_matrix["charges"].sort_values(ascending=False))
+
+# Heatmap (matplotlib imshow)
+plt.figure(figsize=(8,6))
+plt.imshow(corr_matrix, cmap="coolwarm", vmin=-1, vmax=1)
+plt.colorbar()
+plt.title("Correlation Heatmap")
+plt.xticks(range(len(corr_matrix.columns)), corr_matrix.columns, rotation=90)
+plt.yticks(range(len(corr_matrix.columns)), corr_matrix.columns)
+plt.tight_layout()
+plt.show()
