@@ -111,3 +111,19 @@ df_pp[["age", "bmi", "charges"]] = scaler.fit_transform(df_pp[["age", "bmi", "ch
 
 print("\nHead of processed dataframe:")
 print(df_pp.head())
+
+# ===============================
+# 6. Regional Analysis
+# ===============================
+region_summary = df.groupby("region")["charges"].agg(["mean", "median", "count"])
+# We get brief statistics on medical expenses grouped by region.
+print("\nRegional summary:")
+print(region_summary)
+
+# Bar plot of mean charges per region
+plt.figure(figsize=(7,4))
+plt.bar(region_summary.index, region_summary["mean"], color="skyblue", edgecolor="black")
+plt.title("Average Charges by Region")
+plt.xlabel("Region")
+plt.ylabel("Mean Charges")
+plt.show()
