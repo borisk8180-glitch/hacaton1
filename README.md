@@ -1,4 +1,4 @@
-"#hacaton1" 
+"#hackaton1" 
 
 Loaded /mnt/data/insurance.csv and inspected the data (info, describe, missing values).
 Created visualizations (histograms, boxplots, scatter plots, correlation heatmap) using Matplotlib.
