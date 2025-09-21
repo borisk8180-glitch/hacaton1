@@ -92,3 +92,22 @@ plt.xticks(range(len(corr_matrix.columns)), corr_matrix.columns, rotation=90)
 plt.yticks(range(len(corr_matrix.columns)), corr_matrix.columns)
 plt.tight_layout()
 plt.show()
+
+# ===============================
+# 5. Data Preprocessing
+# ===============================
+# Encode categorical features
+df_pp = df.copy()
+df_pp["sex"] = df_pp["sex"].map({"male":1, "female":0})
+df_pp["smoker"] = df_pp["smoker"].map({"yes":1, "no":0})
+df_pp = pd.get_dummies(df_pp, columns=["region"], drop_first=False)
+
+# Standardize numeric columns
+scaler = StandardScaler()
+df_pp[["age", "bmi", "charges"]] = scaler.fit_transform(df_pp[["age", "bmi", "charges"]])
+# So that all numerical signs are on the same scale.
+# Many models (for example, linear regression, SVM, KNN, neural networks) are sensitive to the scale of features.
+# This way the algorithm learns faster and more stable.
+
+print("\nHead of processed dataframe:")
+print(df_pp.head())
