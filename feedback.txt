@@ -1,0 +1,10 @@
+Your project showed most of the crucial parts of the Data Analysis workflow but lacked several key aspects. You correctly checked for missing values and checked the basic statistics of the dataset to get an idea of what the data looks like, but didn’t check for outliers in the various fields which could have improved your analysis. Your visualizations show some trends that help the reader understand the main causes of high medical expenses but the analysis could have been more in depth (for example, once you’ve found important features like smoking, age and bmi, you can investigate further to see how they affect one another and how they affect the cost together). Finally, one of the most important parts of a presentation is the conclusions, summarizing the trends you learned in your analysis for the reader and providing clear insights they can use to make decisions. Your presentation mostly skipped the conclusion section, which is unfortunate.
+
+Cleaning: 9/10
+Exploratory Data Analysis: 8/10
+Data Analysis and Visualizations: 16/20
+Conclusions: 4/10
+
+Final Grade: 74
+
+Note: My review of your github repository shows a well used repository with clear commit messages, good job. One more thing, it seemed that parts of your code and parts of the presentation (what you read out loud) was done by GPT. It would be better to hear the presentation in your own words, so I can make sure you understand everything you’re presenting.
